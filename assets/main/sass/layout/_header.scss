@@ -14,7 +14,7 @@
 		@include vendor('justify-content', 'flex-end');
 		@include vendor('pointer-events', 'none');
 		@include vendor('user-select', 'none');
-		height: 20rem;
+		height: 15rem;
 		padding-bottom: (_size(padding) * 4);
 		position: relative;
 		text-align: center;
@@ -48,7 +48,7 @@
 		}
 
 		@include breakpoint('<=medium') {
-			height: 14rem;
+			height: 12rem;
 			padding-bottom: (_size(padding) * 2);
 		}
 
