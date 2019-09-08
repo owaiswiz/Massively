@@ -5,6 +5,9 @@ const pump = require('pump');
 var livereload = require('gulp-livereload');
 var sass = require('gulp-sass');
 var zip = require('gulp-zip');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
 var beeper = require('beeper');
 
 function serve(done) {
@@ -39,6 +42,25 @@ function css(done) {
     ], handleError(done));
 }
 
+function js(done) {
+    var jsAssetsDirPath = "./assets/main/js/";
+    var files = [
+        'jquery.min.js',
+        'jquery.scrollex.min.js',
+        'jquery.scrolly.min.js',
+        'browser.min.js',
+        'breakpoints.min.js',
+        'util.js',
+        'main.js'
+    ]
+    pump([
+        src(files.map( file => jsAssetsDirPath + file )),
+        concat('bundle.js'),
+        uglify(),
+        dest('assets/main/js')
+    ], handleError(done));
+}
+
 function zipper(done) {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
@@ -58,7 +80,7 @@ function zipper(done) {
 const cssWatcher = () => watch('./assets/main/sass/**/**', css);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
 const watcher = parallel(cssWatcher, hbsWatcher);
-const build = series(css);
+const build = series(css, js);
 const dev = series(build, serve, watcher);
 
 exports.build = build;
