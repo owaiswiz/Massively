@@ -22,10 +22,12 @@
 </nav>
 
 <script>
-    var currentUrl = window.location.href
-    var currentTag = document
-        .querySelector(".tag-menu-item > a[href='" + currentUrl +"']")
-        .parentElement
+    try {
+        var currentUrl = window.location.href
+        var currentTag = document
+            .querySelector(".tag-menu-item > a[href='" + currentUrl +"']")
+            .parentElement
 
-    currentTag.classList.add("active")
+        currentTag.classList.add("active")
+    } catch(e) {}
 </script>
