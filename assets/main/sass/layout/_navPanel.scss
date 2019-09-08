@@ -27,11 +27,6 @@
 		text-transform: uppercase;
 		z-index: _misc(z-index-base) + 1;
 
-		&:before {
-			content: '\f0c9';
-			margin-right: 0.5rem;
-		}
-
 		&.alt {
 			background-color: transparentize(_palette(bg), 0.125);
 			box-shadow: 0 0.125rem 0.75rem 0 transparentize(_palette(invert, bg), 0.75);
@@ -113,11 +108,6 @@
 			top: 0;
 			vertical-align: middle;
 			width: 7rem;
-
-			&:before {
-				content: '\f00d';
-				font-size: 1.25rem;
-			}
 
 			&:hover {
 				color: _palette(fg-bold);
